@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ref, set, onValue } from "firebase/database";
-import { blogsDatabase } from './firebase2';
+import { blogsDatabase } from '../api/firebase2';
 import { Leaf, Zap, Sun, Heart, MessageCircle, Share2, ChevronLeft, Hand, Lightbulb, Inspect } from 'lucide-react';
 import DOMPurify from 'dompurify';
 

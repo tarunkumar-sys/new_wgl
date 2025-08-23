@@ -1,18 +1,10 @@
 import bgImage from "/images/img4.avif";
-
-// import bgVideo from "/videos/riverraft2.mp4"
-// import bgVideo from "../assets/earth.mp4";
-// import waves from "../assets/waves.mp4"
-// import forest from "../assets/forest.mp4"
-// import earth2 from "../assets/earth2.mp4"
-// import banaras from "../assets/banaras.mp4"
-
 import { useNavigate, useLocation } from "react-router-dom";
 
-const useVideo = true; // 👉 Change this to false to show image instead of video
+const useVideo = true; // Change this to false to show image instead of video
 
 const HomeSection = () => {
-  const navigate = useNavigate(); // ✅ missing before
+  const navigate = useNavigate(); 
 
   return (
     <section id="home" className="w-full h-screen relative overflow-hidden">
