@@ -25,6 +25,7 @@
     "cloudinary": "^1.41.3",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
+    "dompurify": "^3.2.6",
     "dotenv": "^17.2.1",
     "echarts": "^5.6.0",
     "echarts-for-react": "^3.0.2",

@@ -119,13 +119,13 @@ export default function BlogPost() {
   };
 
   if (isLoading) return (
-    <div className="bg-neutral-900 min-h-screen flex items-center justify-center">
+    <div className=" min-h-screen flex items-center justify-center">
       <div className="text-white text-xl">Loading post...</div>
     </div>
   );
 
   if (!post) return (
-    <div className="bg-neutral-900 min-h-screen flex items-center justify-center">
+    <div className=" min-h-screen flex items-center justify-center">
       <div className="text-white text-xl">Post not found</div>
     </div>
   );
@@ -240,7 +240,7 @@ export default function BlogPost() {
             </div>
           </div>
 
-          <div className="border-t border-green-500/20 pt-8 mb-8">
+          {/* <div className="border-t border-green-500/20 pt-8 mb-8">
             <h2 className="text-2xl font-bold text-white mb-6">Comments ({post.comments?.length || 0})</h2>
             <div className="space-y-4 mb-8">
               {post.comments?.length > 0 ? (
@@ -277,7 +277,7 @@ export default function BlogPost() {
                 Post Comment
               </button>
             </form>
-          </div>
+          </div> */}
         </article>
       </div>
     </div>
