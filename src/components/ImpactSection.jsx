@@ -122,7 +122,7 @@ export default function ImpactSection() {
                 <img
                   src="images\sdg\Sustainable_Development_Goal_01NoPoverty.svg"
                   alt="Clean Water and Sanitation"
-                  className="sm:w-28 sm:h-28 object-cover rounded-xl sm:hover:scale-105 transition-transform duration-300 ease-in-out"
+                  className="sm:w-36 sm:h-36 object-cover rounded-xl sm:hover:scale-105 transition-transform duration-300 ease-in-out"
                 />
                 {/* <span className="text-sm">Clean Water and Sanitation</span> */}
               </div>
@@ -130,7 +130,7 @@ export default function ImpactSection() {
                 <img
                   src="images\sdg\Sustainable_Development_Goal_02ZeroHunger.svg"
                   alt="Clean Water and Sanitation"
-                  className="sm:w-28 sm:h-28 object-cover rounded-xl sm:hover:scale-105 transition-transform duration-300 ease-in-out"
+                  className="sm:w-36 sm:h-36 object-cover rounded-xl sm:hover:scale-105 transition-transform duration-300 ease-in-out"
                 />
                 {/* <span className="text-sm">Climate Action</span> */}
               </div>
@@ -138,7 +138,7 @@ export default function ImpactSection() {
                 <img
                   src="images\sdg\Sustainable_Development_Goal_04QualityEducation.svg"
                   alt="Clean Water and Sanitation"
-                  className="sm:w-28 sm:h-28 object-cover rounded-xl sm:hover:scale-105 transition-transform duration-300 ease-in-out"
+                  className="sm:w-36 sm:h-36 object-cover rounded-xl sm:hover:scale-105 transition-transform duration-300 ease-in-out"
                 />
                 {/* <span className="text-sm">Life on Land</span> */}
               </div>
@@ -146,7 +146,7 @@ export default function ImpactSection() {
                 <img
                   src="images\sdg\Sustainable_Development_Goal_06CleanWaterSanitation.svg"
                   alt="Clean Water and Sanitation"
-                  className="sm:w-28 sm:h-28 object-cover rounded-xl sm:hover:scale-105 transition-transform duration-300 ease-in-out"
+                  className="sm:w-36 sm:h-36 object-cover rounded-xl sm:hover:scale-105 transition-transform duration-300 ease-in-out"
                 />
                 {/* <span className="text-sm">Partnerships for the Goals</span> */}
               </div>
@@ -154,7 +154,7 @@ export default function ImpactSection() {
                 <img
                   src="images\sdg\Sustainable_Development_Goal_13Climate.svg"
                   alt="Clean Water and Sanitation"
-                  className="sm:w-28 sm:h-28 object-cover rounded-xl sm:hover:scale-105 transition-transform duration-300 ease-in-out"
+                  className="sm:w-36 sm:h-36 object-cover rounded-xl sm:hover:scale-105 transition-transform duration-300 ease-in-out"
                 />
                 {/* <span className="text-sm">Partnerships for the Goals</span> */}
               </div>
@@ -162,7 +162,7 @@ export default function ImpactSection() {
                 <img
                   src="images\sdg\Sustainable_Development_Goal_15LifeOnLand.svg"
                   alt="Clean Water and Sanitation"
-                  className="sm:w-28 sm:h-28 object-cover rounded-xl sm:hover:scale-105 transition-transform duration-300 ease-in-out"
+                  className="sm:w-36 sm:h-36 object-cover rounded-xl sm:hover:scale-105 transition-transform duration-300 ease-in-out"
                 />
                 {/* <span className="text-sm">Partnerships for the Goals</span> */}
               </div>
@@ -170,7 +170,7 @@ export default function ImpactSection() {
           </div>
 
           {/* Impact Assessment */}
-          <div className="bg-[#075840] rounded-xl p-6 border  border-green-700 shadow-lg text-center">
+          {/* <div className="bg-[#075840] rounded-xl p-6 border  border-green-700 shadow-lg text-center">
             <h4 className="text-sm font-semibold text-lime-300 mb-4">
               Environmental Impact Assessment
             </h4> 
@@ -197,15 +197,23 @@ export default function ImpactSection() {
                 </div>
               </div>
             ))}
+          </div> */}
 
-            {/* <img
-              src="public\images\global-goals.png"
-              alt="Environmental Impact"
-              className="w-full max-w-md sm:max-w-lg  bg-white mx-auto mt-4 object-contain rounded-lg"
-            /> */}
-          </div>
+          < img
+            src="images\goals.jpg"
+            alt="Environmental Impact"
+            className="w-full max-w-md sm:max-w-lg  mx-auto sm:mt-20 object-containn shadow rounded-2xl "
+          />
         </div>
       </div>
     </section>
   );
+}
+
+{
+  /* <img
+              src="public\images\global-goals.png"
+              alt="Environmental Impact"
+              className="w-full max-w-md sm:max-w-lg  bg-white mx-auto mt-4 object-contain rounded-lg"
+            /> */
 }

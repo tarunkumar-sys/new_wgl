@@ -75,40 +75,40 @@ const ProjectAdmin = () => {
   }, []);
 
   // Handle drag and drop to reorder projects
-  const handleDragEnd = async (result) => {
-    if (!result.destination) return;
+  // const handleDragEnd = async (result) => {
+  //   if (!result.destination) return;
     
-    const items = Array.from(orderedProjects);
-    const [reorderedItem] = items.splice(result.source.index, 1);
-    items.splice(result.destination.index, 0, reorderedItem);
+  //   const items = Array.from(orderedProjects);
+  //   const [reorderedItem] = items.splice(result.source.index, 1);
+  //   items.splice(result.destination.index, 0, reorderedItem);
     
-    // Update the order field for all projects
-    const updatedProjects = items.map((project, index) => ({
-      ...project,
-      order: index
-    }));
+  //   // Update the order field for all projects
+  //   const updatedProjects = items.map((project, index) => ({
+  //     ...project,
+  //     order: index
+  //   }));
     
-    setOrderedProjects(updatedProjects);
+  //   setOrderedProjects(updatedProjects);
     
-    // Update each project in Firestore with the new order
-    try {
-      setLoading(true);
-      const updatePromises = updatedProjects.map(async (project) => {
-        const projectRef = doc(db, "projects", project.id);
-        await updateDoc(projectRef, {
-          order: project.order
-        });
-      });
+  //   // Update each project in Firestore with the new order
+  //   try {
+  //     setLoading(true);
+  //     const updatePromises = updatedProjects.map(async (project) => {
+  //       const projectRef = doc(db, "projects", project.id);
+  //       await updateDoc(projectRef, {
+  //         order: project.order
+  //       });
+  //     });
       
-      await Promise.all(updatePromises);
-      setProjects(updatedProjects);
-    } catch (error) {
-      console.error("Error updating project order:", error);
-      alert("Failed to update project order. Please try again.");
-    } finally {
-      setLoading(false);
-    }
-  };
+  //     await Promise.all(updatePromises);
+  //     setProjects(updatedProjects);
+  //   } catch (error) {
+  //     console.error("Error updating project order:", error);
+  //     alert("Failed to update project order. Please try again.");
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   // Upload image to Cloudinary
   const uploadImageToCloudinary = async (file) => {
@@ -928,5 +928,3 @@ const ProjectAdmin = () => {
 };
 
 export default ProjectAdmin;
-
-
