@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Trees, Droplets, School, Mountain, Sprout } from "lucide-react";
-
+import ParticleBackground from "./ParticleBackground";
 // --- ICONS --- //
 const CheckIcon = ({ className }) => (
   <svg
@@ -92,9 +92,7 @@ const whyDonateItems = [
 ];
 
 const impactItems = [
-  { amount: 500, 
-    text: "Plants 5 trees", 
-    icon: <Sprout className="w-6 h-6" /> },
+  { amount: 500, text: "Plants 5 trees", icon: <Sprout className="w-6 h-6" /> },
   {
     amount: 1000,
     text: "Clean water for a family",
@@ -167,28 +165,10 @@ const App = () => {
   const [hoveredIcon, setHoveredIcon] = useState(null);
 
   return (
-    <div className="min-h-screen  text-gray-800 font-sans p-4 sm:p-6 lg:p-8">
-      {/* <style>{`
-        @keyframes fall {
-          0% { 
-            transform: translateY(-10vh) translateX(0) rotate(0deg); 
-            opacity: 0; 
-          }
-          20% {
-            opacity: 1;
-          }
-          100% { 
-            transform: translateY(100vh) translateX(var(--translateX-end)) rotate(var(--rotate-end)); 
-            opacity: 0; 
-          }
-        }
-        .animate-fall {
-          animation-name: fall;
-          animation-timing-function: ease-in;
-          animation-fill-mode: forwards;
-        }
-      `}</style> */}
-      <div className="max-w-6xl mx-auto">
+    <div className="min-h-screen  text-gray-800 font-sans p-4 sm:p-6 lg:p-8 relative">
+      {/* Particle background effect */}
+      <ParticleBackground />
+      <div className="max-w-6xl mx-auto relative z-10">
         {/* Header */}
         <header className="text-center mb-8">
           <div className="flex justify-center items-center gap-3 mb-2">
@@ -197,10 +177,11 @@ const App = () => {
               World Green Line
             </h1>
           </div>
-         <p className="text-gray-300 max-w-xl mx-auto">
-           Your donation fuels our mission to build a greener, healthier planet.
-        </p>
-        <div className="w-20 h-1 bg-lime-300 mt-4 mx-auto rounded-full" />
+          <p className="text-gray-300 max-w-xl mx-auto">
+            Your donation fuels our mission to build a greener, healthier
+            planet.
+          </p>
+          <div className="w-20 h-1 bg-lime-300 mt-4 mx-auto rounded-full" />
         </header>
 
         {/* Main Content Grid */}
@@ -265,7 +246,6 @@ const App = () => {
           </div>
         </div>
 
-        
         <footer className="text-center mt-12 text-gray-500 text-sm">
           <p>
             A registered non-profit organization. Donations are tax-deductible
