@@ -109,7 +109,7 @@ const ParticleBackground = () => {
                 let y = (Math.random() * ((window.innerHeight - size * 2) - (size * 2))) + size * 2;
                 let directionX = (Math.random() * 0.4) - 0.2; 
                 let directionY = (Math.random() * 0.4) - 0.2;
-                let color = 'rgba(16, 185, 129, 0.5)';
+                let color = 'rgba(16, 185, 129, 0.1)';
                 particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
             }
         }

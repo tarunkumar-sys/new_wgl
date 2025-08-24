@@ -1,3 +1,5 @@
+import React, { useRef, useState } from 'react';
+
 const ImpactCard = ({ value, label, desc }) => {
   return (
     <div
@@ -57,6 +59,81 @@ const ImpactCard = ({ value, label, desc }) => {
     </div>
   );
 };
+
+
+// A component that applies the 3D tilt effect on mouse hover.
+const TiltImage = ({ src, alt, className }) => {
+  // Use a ref to get a direct reference to the DOM element
+  const itemRef = useRef(null);
+  // State to hold the dynamic CSS transform styles
+  const [transformStyle, setTransformStyle] = useState({});
+
+  // Handler for mouse movement
+  const handleMouseMove = (e) => {
+    const item = itemRef.current;
+    if (!item) return;
+
+    // Get the bounding box of the element to calculate mouse position
+    const rect = item.getBoundingClientRect();
+    const positionPxX = e.clientX - rect.left;
+    const positionX = (positionPxX / item.offsetWidth) * 100;
+
+    const positionPyY = e.clientY - rect.top;
+    const positionY = (positionPyY / item.offsetHeight) * 100;
+
+    // Calculate the rotation values based on the mouse position
+    // The values are scaled to create a subtle tilt
+    const rX = 0.5 * (50 - positionY);
+    const rY = -(0.5) * (50 - positionX);
+
+    // Update the state with the new transform style
+    setTransformStyle({
+      transform: `rotateX(${rX}deg) rotateY(${rY}deg)`,
+      transition: '0.2s',
+      transformStyle: 'preserve-3d',
+      perspective: '100rem',
+      // Add a small shadow to enhance the 3D effect
+      boxShadow: '0 30px 20px rgba(0, 0, 0, 0.3)'
+    });
+  };
+
+  // Handler for when the mouse leaves the element
+  const handleMouseOut = () => {
+    // Reset the transform style to the original state
+    setTransformStyle({
+      transform: 'rotateX(0deg) rotateY(0deg)',
+      transition: '0.5s',
+      boxShadow: '0 10px 15px rgba(0, 0, 0, 0.1)'
+    });
+  };
+
+  return (
+    <div
+      ref={itemRef}
+      className="w-full max-w-md sm:max-w-lg mx-auto"
+      onMouseMove={handleMouseMove}
+      onMouseOut={handleMouseOut}
+      style={{
+        transformStyle: 'preserve-3d',
+        perspective: '100rem',
+      }}
+    >
+      <img
+        src={src}
+        alt={alt}
+        className={`${className} transition-all duration-300`}
+        style={{
+          ...transformStyle,
+          transform: transformStyle.transform,
+          transformStyle: 'preserve-3d',
+          borderRadius: '1rem',
+          boxShadow: transformStyle.boxShadow || '0 20px 25px rgba(0, 0, 0, 0.2)'
+        }}
+      />
+    </div>
+  );
+};
+
 
 export default function ImpactSection() {
   return (
@@ -168,38 +245,7 @@ export default function ImpactSection() {
               </div>
             </div>
           </div>
-
-          {/* Impact Assessment */}
-          {/* <div className="bg-[#075840] rounded-xl p-6 border  border-green-700 shadow-lg text-center">
-            <h4 className="text-sm font-semibold text-lime-300 mb-4">
-              Environmental Impact Assessment
-            </h4> 
-            {[
-              { label: "Carbon Sequestration", value: 85 },
-              { label: "Water Quality Improvement", value: 92 },
-              { label: "Biodiversity Enhancement", value: 78 },
-              { label: "Community Engagement", value: 95 },
-            ].map((item, idx) => (
-              <div key={idx} className="mb-4">
-                <div className="flex justify-between mb-1">
-                  <span className="text-sm font-medium text-white">
-                    {item.label}
-                  </span>
-                  <span className="text-sm font-medium text-white">
-                    {item.value}%
-                  </span>
-                </div>
-                <div className="w-full bg-gray-600 rounded-full h-2">
-                  <div
-                    className="bg-green-500 h-2 rounded-full"
-                    style={{ width: `${item.value}%` }}
-                  />
-                </div>
-              </div>
-            ))}
-          </div> */}
-
-          < img
+          <TiltImage img
             src="images\goals.jpg"
             alt="Environmental Impact"
             className="w-full max-w-md sm:max-w-lg  mx-auto sm:mt-20 object-containn shadow rounded-2xl "
@@ -208,12 +254,4 @@ export default function ImpactSection() {
       </div>
     </section>
   );
-}
-
-{
-  /* <img
-              src="public\images\global-goals.png"
-              alt="Environmental Impact"
-              className="w-full max-w-md sm:max-w-lg  bg-white mx-auto mt-4 object-contain rounded-lg"
-            /> */
 }

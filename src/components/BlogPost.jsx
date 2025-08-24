@@ -5,7 +5,7 @@ import { ref, set, onValue } from "firebase/database";
 import { blogsDatabase } from '../api/firebase2';
 import { Leaf, Zap, Sun, Heart, MessageCircle, Share2, ChevronLeft, Hand, Lightbulb, Inspect } from 'lucide-react';
 import DOMPurify from 'dompurify';
-
+ 
 const ReactionButton = ({ icon, count, active, onClick }) => (
   <button
     onClick={onClick}
@@ -72,37 +72,39 @@ export default function BlogPost() {
       .catch(console.error);
   };
 
-  const handleClap = () => {
+
+    const handleClap = () => {
     if (!post) return;
     const updatedPost = {
       ...post,
-      claps: (post.claps || 0) + 1
+      isclaps: !post.isLiked,
+        claps: post.isclaps ? post.claps -1 : post.likes + 1
     };
     set(ref(blogsDatabase, `posts/${id}`), updatedPost)
       .then(() => setPost(updatedPost))
       .catch(console.error);
   };
 
-  const handleAddComment = (e) => {
-    e.preventDefault();
-    if (!commentText.trim() || !post) return;
-    const newComment = {
-      id: Date.now().toString(),
-      author: 'Visitor',
-      text: commentText,
-      date: new Date().toLocaleDateString()
-    };
-    const updatedPost = {
-      ...post,
-      comments: [...(post.comments || []), newComment]
-    };
-    set(ref(blogsDatabase, `posts/${id}`), updatedPost)
-      .then(() => {
-        setPost(updatedPost);
-        setCommentText('');
-      })
-      .catch(console.error);
-  };
+  // const handleAddComment = (e) => {
+  //   e.preventDefault();
+  //   if (!commentText.trim() || !post) return;
+  //   const newComment = {
+  //     id: Date.now().toString(),
+  //     author: 'Visitor',
+  //     text: commentText,
+  //     date: new Date().toLocaleDateString()
+  //   };
+  //   const updatedPost = {
+  //     ...post,
+  //     comments: [...(post.comments || []), newComment]
+  //   };
+  //   set(ref(blogsDatabase, `posts/${id}`), updatedPost)
+  //     .then(() => {
+  //       setPost(updatedPost);
+  //       setCommentText('');
+  //     })
+  //     .catch(console.error);
+  // };
 
   const handleShare = () => {
     if (navigator.share) {
