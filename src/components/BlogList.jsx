@@ -2,29 +2,24 @@ import React, { useState, useEffect } from "react";
 import { ref, onValue, set } from "firebase/database";
 import { blogsDatabase } from "../api/firebase2";
 import {
-  ChevronRight,
   Leaf,
-  Zap,
-  Sun,
   Heart,
-  MessageCircle,
   Search,
   Hand,
   Share2,
   Lightbulb,
-  Inspect,
+  Trash2,
+  Users
 } from "lucide-react";
 import { Link } from "react-router-dom";
-import ParticleBackground from "./ParticleBackground";
+// import ParticleBackground from "./ParticleBackground";
 
 const BlogCard = ({ post }) => {
   // Function to extract plain text from HTML
   const getPlainText = (htmlContent) => {
     if (!htmlContent) return '';
-    // Create a temporary div element
     const tempDiv = document.createElement("div");
     tempDiv.innerHTML = htmlContent;
-    // Return the text content
     return tempDiv.textContent || tempDiv.innerText || '';
   };
 
@@ -34,18 +29,21 @@ const BlogCard = ({ post }) => {
     if (text.length <= maxLength) return text;
     return text.substring(0, maxLength) + '...';
   };
+  
+  // Normalize category for consistent comparison
+  const normalizedCategory = (post.category || '').toUpperCase();
 
   // Define category colors
   const getCategoryColor = (category) => {
     switch (category) {
-      case "REFORESTATION":
-        return "bg-green-500 text-white";
-      case "RENEWABLE ENERGY":
-        return "bg-yellow-500 text-gray-900";
-      case "OCEAN CONSERVATION":
+      case "RURAL UPLIFTMENT":
+        return "bg-orange-500 text-white";
+      case "HEALTHCARE AND SANITATION":
         return "bg-blue-500 text-white";
-      case "URBAN ECOLOGY":
-        return "bg-teal-500 text-white";
+      case "WASTE MANAGEMENT":
+        return "bg-gray-500 text-white";
+      case "ENVIRONMENT":
+        return "bg-green-500 text-white";
       default:
         return "bg-purple-500 text-white";
     }
@@ -54,13 +52,13 @@ const BlogCard = ({ post }) => {
   // Get icon based on category
   const getCategoryIcon = (category) => {
     switch (category) {
-      case "REFORESTATION":
-        return <Leaf size={16} />;
-      case "RENEWABLE ENERGY":
-        return <Zap size={16} />;
-      case "OCEAN CONSERVATION":
-        return <Sun size={16} />;
-      case "URBAN ECOLOGY":
+      case "RURAL UPLIFTMENT":
+        return <Users size={16} />;
+      case "HEALTHCARE AND SANITATION":
+        return <Heart size={16} />;
+      case "WASTE MANAGEMENT":
+        return <Trash2 size={16} />;
+      case "ENVIRONMENT":
         return <Leaf size={16} />;
       default:
         return <Lightbulb size={16} />;
@@ -94,7 +92,6 @@ const BlogCard = ({ post }) => {
 
   return (
     <div className="group bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
-      {/* Feature Image - Takes 40-50% of card height */}
       <div className="h-48 overflow-hidden">
         <img
           src={post.imageUrl}
@@ -104,25 +101,21 @@ const BlogCard = ({ post }) => {
       </div>
       
       <div className="p-5 flex flex-col flex-grow">
-        {/* Category Label - Pill shaped */}
         <div className="mb-3">
-          <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium ${getCategoryColor(post.category)}`}>
-            {getCategoryIcon(post.category)}
+          <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium ${getCategoryColor(normalizedCategory)}`}>
+            {getCategoryIcon(normalizedCategory)}
             {post.category}
           </span>
         </div>
         
-        {/* Title - Big bold black text */}
         <h3 className="text-xl font-bold text-gray-900 mb-2 line-clamp-2">
           {post.title}
         </h3>
         
-        {/* Description - Short gray paragraph (converted from HTML to plain text) */}
         <p className="text-gray-600 text-sm mb-4 line-clamp-3 flex-grow">
           {truncateText(getPlainText(post.content))}
         </p>
         
-        {/* Author, Date, and Stats Info */}
         <div className="flex items-center justify-between mt-auto pt-3 border-t border-gray-100">
           <div className="flex flex-col">
             <span className="text-sm font-medium text-gray-900">
@@ -133,15 +126,12 @@ const BlogCard = ({ post }) => {
             </span>
           </div>
           
-          {/* Stats with icons */}
           <div className="flex items-center gap-3">
-            {/* Likes */}
             <div className="flex items-center gap-1 text-xs text-gray-500">
               <Heart size={16} className={post.isLiked ? "fill-red-500 text-red-500" : ""} />
               <span>{post.likes || 0}</span>
             </div>
             
-            {/* Appreciation (Hand/Claps) */}
             <div 
               className="flex items-center gap-1 text-xs text-gray-500 cursor-pointer"
               onClick={handleAppreciation}
@@ -151,7 +141,6 @@ const BlogCard = ({ post }) => {
               <span>{post.claps || 0}</span>
             </div>
             
-            {/* Share button */}
             <button 
               className="p-1 rounded-full hover:bg-gray-100 transition-colors"
               onClick={(e) => {
@@ -165,7 +154,6 @@ const BlogCard = ({ post }) => {
                   });
                 } else {
                   navigator.clipboard.writeText(window.location.origin + `/blogs/${post.id}`);
-                  // You could add a toast notification here
                   alert("Link copied to clipboard!");
                 }
               }}
@@ -188,7 +176,6 @@ export default function BlogList() {
   const [activeTag, setActiveTag] = useState("ALL");
   const [allTags, setAllTags] = useState([]);
 
-  // Get all unique categories and tags
   useEffect(() => {
     const postsRef = ref(blogsDatabase, "posts");
 
@@ -203,7 +190,6 @@ export default function BlogList() {
         setPosts(postsArray);
         setFilteredPosts(postsArray);
 
-        // Extract all unique tags
         const tags = new Set();
         postsArray.forEach((post) => {
           if (post.tags) {
@@ -221,7 +207,6 @@ export default function BlogList() {
     return () => unsubscribe();
   }, []);
 
-  // Filter posts based on search, category and tag
   useEffect(() => {
     let result = [...posts];
 
@@ -239,7 +224,7 @@ export default function BlogList() {
     }
 
     if (activeCategory !== "ALL") {
-      result = result.filter((post) => post.category === activeCategory);
+      result = result.filter((post) => post.category.toUpperCase() === activeCategory.toUpperCase());
     }
 
     if (activeTag !== "ALL") {
@@ -253,29 +238,29 @@ export default function BlogList() {
 
   const categories = [
     "ALL",
-    "REFORESTATION",
-    "RENEWABLE ENERGY",
-    "OCEAN CONSERVATION",
-    "URBAN ECOLOGY",
+    "RURAL UPLIFTMENT",
+    "HEALTHCARE AND SANITATION",
+    "WASTE MANAGEMENT",
+    "ENVIRONMENT",
   ];
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="text-gray-700 text-xl">Loading posts...</div>
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-white text-xl">Loading posts...</div>
       </div>
     );
   }
 
   return (
     <div className="min-h-screen relative">
-      <ParticleBackground />
+       {/* <ParticleBackground /> */}
       <div className="container mx-auto px-4 py-16 sm:py-24 relative z-10">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-white mb-4">
+          <h1 className="text-5xl font-bold text-lime-300 mb-4">
             Environmental Blog
           </h1>
-          <p className="text-gray-400 text-lg max-w-3xl mx-auto">
+          <p className="text-gray-200 text-lg max-w-3xl mx-auto">
             Discover the latest insights and stories about environmental conservation, 
             sustainability, and eco-friendly practices from around the world.
           </p>
