@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState } from "react";
 
 const ImpactCard = ({ value, label, desc }) => {
   return (
@@ -60,20 +60,20 @@ const ImpactCard = ({ value, label, desc }) => {
   );
 };
 
-
-// A component that applies the 3D tilt effect on mouse hover.
+// A component that applies the 3D tilt effect with default tilt
 const TiltImage = ({ src, alt, className }) => {
-  // Use a ref to get a direct reference to the DOM element
   const itemRef = useRef(null);
-  // State to hold the dynamic CSS transform styles
-  const [transformStyle, setTransformStyle] = useState({});
+  // Set default tilted state (left-down tilt)
+  const [transformStyle, setTransformStyle] = useState({
+    transform: "rotateX(-5deg) rotateY(-5deg)",
+    transformStyle: "preserve-3d",
+    boxShadow: "0 30px 20px rgba(0, 0, 0, 0.3)",
+  });
 
-  // Handler for mouse movement
   const handleMouseMove = (e) => {
     const item = itemRef.current;
     if (!item) return;
 
-    // Get the bounding box of the element to calculate mouse position
     const rect = item.getBoundingClientRect();
     const positionPxX = e.clientX - rect.left;
     const positionX = (positionPxX / item.offsetWidth) * 100;
@@ -81,29 +81,26 @@ const TiltImage = ({ src, alt, className }) => {
     const positionPyY = e.clientY - rect.top;
     const positionY = (positionPyY / item.offsetHeight) * 100;
 
-    // Calculate the rotation values based on the mouse position
-    // The values are scaled to create a subtle tilt
-    const rX = 0.5 * (50 - positionY);
-    const rY = -(0.5) * (50 - positionX);
+    // Calculate rotation from default tilted position
+    const rX = -5 + 0.5 * (50 - positionY); // Start from -5deg default
+    const rY = -5 + -0.5 * (50 - positionX); // Start from -5deg default
 
-    // Update the state with the new transform style
     setTransformStyle({
       transform: `rotateX(${rX}deg) rotateY(${rY}deg)`,
-      transition: '0.2s',
-      transformStyle: 'preserve-3d',
-      perspective: '100rem',
-      // Add a small shadow to enhance the 3D effect
-      boxShadow: '0 30px 20px rgba(0, 0, 0, 0.3)'
+      transition: "0.2s",
+      transformStyle: "preserve-3d",
+      perspective: "100rem",
+      boxShadow: "0 30px 20px rgba(0, 0, 0, 0.3)",
     });
   };
 
-  // Handler for when the mouse leaves the element
   const handleMouseOut = () => {
-    // Reset the transform style to the original state
+    // Reset to default tilted state
     setTransformStyle({
-      transform: 'rotateX(0deg) rotateY(0deg)',
-      transition: '0.5s',
-      boxShadow: '0 10px 15px rgba(0, 0, 0, 0.1)'
+      transform: "rotateX(0deg) rotateY(-20deg)",
+      transition: "0.5s",
+      transformStyle: "preserve-3d",
+      boxShadow: "0 30px 20px rgba(0, 0, 0, 0.3)",
     });
   };
 
@@ -114,8 +111,8 @@ const TiltImage = ({ src, alt, className }) => {
       onMouseMove={handleMouseMove}
       onMouseOut={handleMouseOut}
       style={{
-        transformStyle: 'preserve-3d',
-        perspective: '100rem',
+        transformStyle: "preserve-3d",
+        perspective: "100rem",
       }}
     >
       <img
@@ -125,15 +122,14 @@ const TiltImage = ({ src, alt, className }) => {
         style={{
           ...transformStyle,
           transform: transformStyle.transform,
-          transformStyle: 'preserve-3d',
-          borderRadius: '1rem',
-          boxShadow: transformStyle.boxShadow || '0 20px 25px rgba(0, 0, 0, 0.2)'
+          transformStyle: "preserve-3d",
+          borderRadius: "1rem",
+          boxShadow: transformStyle.boxShadow,
         }}
       />
     </div>
   );
 };
-
 
 export default function ImpactSection() {
   return (
@@ -155,22 +151,22 @@ export default function ImpactSection() {
             {
               value: "7,000+",
               label: "Trees Planted",
-              desc: "Native species planted across various regions",
+              desc: "Local trees planted to bring back nature",
             },
             {
-              value: "12",
-              label: "Water Bodies Restored",
-              desc: "Ponds and lakes revitalized for communities",
+              value: "61+",
+              label: "Tonnes Waste Recycled",
+              desc: "Waste collected and reused to clean up water areas",
             },
             {
               value: "25,000+",
               label: "People Benefited",
-              desc: "Through clean water and green spaces",
+              desc: "Helping communities with clean water and green spaces",
             },
             {
               value: "30+",
               label: "Schools Engaged",
-              desc: "In environmental education programs",
+              desc: "Inspiring students to care for the environment",
             },
           ].map((item, idx) => (
             <ImpactCard
@@ -195,13 +191,11 @@ export default function ImpactSection() {
             </p>
             <div className="pt-4 grid grid-cols-3 gap-y-4 gap-x-6">
               <div className="flex items-center gap-3">
-                {/* <div className="flex items-center gap-3"> */}
                 <img
                   src="images\sdg\Sustainable_Development_Goal_01NoPoverty.svg"
                   alt="Clean Water and Sanitation"
                   className="sm:w-36 sm:h-36 object-cover rounded-xl sm:hover:scale-105 transition-transform duration-300 ease-in-out"
                 />
-                {/* <span className="text-sm">Clean Water and Sanitation</span> */}
               </div>
               <div className="flex items-center gap-3">
                 <img
@@ -209,7 +203,6 @@ export default function ImpactSection() {
                   alt="Clean Water and Sanitation"
                   className="sm:w-36 sm:h-36 object-cover rounded-xl sm:hover:scale-105 transition-transform duration-300 ease-in-out"
                 />
-                {/* <span className="text-sm">Climate Action</span> */}
               </div>
               <div className="flex items-center gap-3">
                 <img
@@ -217,7 +210,6 @@ export default function ImpactSection() {
                   alt="Clean Water and Sanitation"
                   className="sm:w-36 sm:h-36 object-cover rounded-xl sm:hover:scale-105 transition-transform duration-300 ease-in-out"
                 />
-                {/* <span className="text-sm">Life on Land</span> */}
               </div>
               <div className="flex items-center gap-3">
                 <img
@@ -225,7 +217,6 @@ export default function ImpactSection() {
                   alt="Clean Water and Sanitation"
                   className="sm:w-36 sm:h-36 object-cover rounded-xl sm:hover:scale-105 transition-transform duration-300 ease-in-out"
                 />
-                {/* <span className="text-sm">Partnerships for the Goals</span> */}
               </div>
               <div className="flex items-center gap-3">
                 <img
@@ -233,7 +224,6 @@ export default function ImpactSection() {
                   alt="Clean Water and Sanitation"
                   className="sm:w-36 sm:h-36 object-cover rounded-xl sm:hover:scale-105 transition-transform duration-300 ease-in-out"
                 />
-                {/* <span className="text-sm">Partnerships for the Goals</span> */}
               </div>
               <div className="flex items-center gap-3">
                 <img
@@ -241,14 +231,13 @@ export default function ImpactSection() {
                   alt="Clean Water and Sanitation"
                   className="sm:w-36 sm:h-36 object-cover rounded-xl sm:hover:scale-105 transition-transform duration-300 ease-in-out"
                 />
-                {/* <span className="text-sm">Partnerships for the Goals</span> */}
               </div>
             </div>
           </div>
-          <TiltImage img
+          <TiltImage
             src="images\goals.jpg"
             alt="Environmental Impact"
-            className="w-full max-w-md sm:max-w-lg  mx-auto sm:mt-20 object-containn shadow rounded-2xl "
+            className="w-full max-w-md sm:max-w-lg mx-auto sm:mt-20 object-contain rounded-2xl"
           />
         </div>
       </div>
