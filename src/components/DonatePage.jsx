@@ -91,24 +91,24 @@ const whyDonateItems = [
   "Protect wildlife and biodiversity.",
 ];
 
-const impactItems = [
-  { amount: 500, text: "Plants 5 trees", icon: <Sprout className="w-6 h-6" /> },
-  {
-    amount: 1000,
-    text: "Clean water for a family",
-    icon: <Droplets className="w-6 h-6" />,
-  },
-  {
-    amount: 5000,
-    text: "Funds a school program",
-    icon: <School className="w-6 h-6" />,
-  },
-  {
-    amount: 10000,
-    text: "Restores 1 acre of forest",
-    icon: <Trees className="w-6 h-6" />,
-  },
-];
+// const impactItems = [
+//   { amount: 500, text: "Plants 5 trees", icon: <Sprout className="w-6 h-6" /> },
+//   {
+//     amount: 1000,
+//     text: "Clean water for a family",
+//     icon: <Droplets className="w-6 h-6" />,
+//   },
+//   {
+//     amount: 5000,
+//     text: "Funds a school program",
+//     icon: <School className="w-6 h-6" />,
+//   },
+//   {
+//     amount: 10000,
+//     text: "Restores 1 acre of forest",
+//     icon: <Trees className="w-6 h-6" />,
+//   },
+// ];
 
 // --- RAZORPAY INTEGRATION --- //
 const loadRazorpay = async () => {
@@ -200,7 +200,7 @@ const App = () => {
               </ul>
             </div>
 
-            <div className="mt-auto">
+            {/* <div className="mt-auto">
               <h2 className="text-3xl font-bold mb-4">See Your Impact</h2>
               <div className="space-y-3">
                 {impactItems.map((item) => (
@@ -226,7 +226,7 @@ const App = () => {
                   </div>
                 ))}
               </div>
-            </div>
+            </div> */}
           </div>
 
           {/* Right Panel: Donation Form */}
