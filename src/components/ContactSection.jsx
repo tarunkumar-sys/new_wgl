@@ -85,10 +85,10 @@ const ContactSection = () => {
               <div className="flex items-start gap-3">
                 <Mail className="text-lime-400 mt-0.5 w-6 h-6 shrink-0" />
                 <a
-                  href="mailto:info@worldgreenline.org"
+                  href="mailto:worldgreenline@gmail.org"
                   className="hover:text-lime-400 transition-colors duration-200"
                 >
-                  info@worldgreenline.org
+                  worldgreenline@gmail.com  
                 </a>
               </div>
             </div>

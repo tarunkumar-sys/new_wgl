@@ -200,9 +200,9 @@ const App = () => {
               </ul>
             </div>
 
-            {/* <div className="mt-auto">
-              <h2 className="text-3xl font-bold mb-4">See Your Impact</h2>
-              <div className="space-y-3">
+            <div className="mt-auto">
+              <p className=" mb-4">Your contribution is eligible for a 50% tax exemption under Section 80G of the Income Tax Act, 1961</p>
+              {/* <div className="space-y-3">
                 {impactItems.map((item) => (
                   <div
                     key={item.amount}
@@ -225,8 +225,8 @@ const App = () => {
                     </span>
                   </div>
                 ))}
-              </div>
-            </div> */}
+              </div> */}
+            </div>
           </div>
 
           {/* Right Panel: Donation Form */}
@@ -246,12 +246,12 @@ const App = () => {
           </div>
         </div>
 
-        <footer className="text-center mt-12 text-gray-500 text-sm">
+        {/* <footer className="text-center mt-12 text-gray-500 text-sm">
           <p>
             A registered non-profit organization. Donations are tax-deductible
             under Section 80G.
           </p>
-        </footer>
+        </footer> */}
       </div>
     </div>
   );
