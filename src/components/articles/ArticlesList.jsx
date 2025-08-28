@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ref, onValue, set } from "firebase/database";
-import { blogsDatabase } from "../../api/firebase2";
+import { blogsDatabase } from "../../api/firebase_article";
 import {
   Leaf,
   Heart,
