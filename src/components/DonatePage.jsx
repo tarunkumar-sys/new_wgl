@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Trees, Droplets, School, Mountain, Sprout } from "lucide-react";
-import ParticleBackground from "./ParticleBackground";
 // --- ICONS --- //
 const CheckIcon = ({ className }) => (
   <svg
@@ -167,7 +166,7 @@ const App = () => {
   return (
     <div className="min-h-screen  text-gray-800 font-sans p-4 sm:p-6 lg:p-8 relative">
       {/* Particle background effect */}
-      <ParticleBackground />
+
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Header */}
         <header className="text-center mb-8">
@@ -200,32 +199,22 @@ const App = () => {
               </ul>
             </div>
 
-            <div className="mt-auto">
-              <p className=" mb-4">Your contribution is eligible for a 50% tax exemption under Section 80G of the Income Tax Act, 1961</p>
-              {/* <div className="space-y-3">
-                {impactItems.map((item) => (
-                  <div
-                    key={item.amount}
-                    onMouseEnter={() => setHoveredIcon(item.icon)}
-                    onMouseLeave={() => setHoveredIcon(null)}
-                    className={`relative overflow-hidden flex items-center justify-between p-4 rounded-lg transition-all duration-300 ease-in-out cursor-pointer ${
-                      hoveredIcon === item.icon
-                        ? "bg-white/25 scale-105 shadow-xl"
-                        : "bg-white/10 opacity-80"
-                    }`}
-                  >
-                    <div className="flex items-center z-10">
-                      <span className="text-2xl mr-4">{item.icon}</span>
-                      <span className="font-semibold">
-                        ₹{item.amount.toLocaleString("en-IN")}
-                      </span>
-                    </div>
-                    <span className="text-sky-200 text-right z-10">
-                      {item.text}
-                    </span>
-                  </div>
-                ))}
-              </div> */}
+            <div className="mt-auto py-6">
+                <h2 className="text-3xl font-bold mb-4">
+                  Tax Exemption Details
+                </h2>
+                <div>
+                <p className="leading-relaxed">
+                  Your contribution is eligible for a{" "}
+                  <span className="font-semibold">50% tax exemption </span>
+                  under Section 80G of the Income Tax Act, 1961.
+                </p>
+                <p className="leading-relaxed mt-2">
+                  All donations are subject to the applicable Donation Terms
+                  &amp; Conditions of
+                  <span className="font-semibold"> World Green Line</span>.
+                </p>
+                </div>
             </div>
           </div>
 

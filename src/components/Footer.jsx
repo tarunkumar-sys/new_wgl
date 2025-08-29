@@ -22,7 +22,7 @@ const Footer = () => {
   const pdfFiles = {
     privacy: "/docs/Privacy Policy.pdf",
     terms: "/docs/Donation T&C.pdf",
-    fraud: "/docs/Refund Policy.pdf",
+    Refund: "/docs/Refund Policy.pdf",
     cookies: "/docs/Cookies Policy.pdf",
   };
 
@@ -175,17 +175,17 @@ const Footer = () => {
             </button>
             {/* <span className="hidden sm:inline">|</span> */}
             <button
-              onClick={() => setOpenPDF("fraud")}
+              onClick={() => setOpenPDF("Refund")}
               className="hover:text-lime-400 whitespace-nowrap"
             >
-              Fraud Policy
+              Refund Policy
             </button>
             {/* <span className="hidden sm:inline">|</span> */}
             <button
               onClick={() => setOpenPDF("terms")}
               className="hover:text-lime-400 whitespace-nowrap"
             >
-              Terms & Conditions
+              Donation Terms & Conditions
             </button>
             <button
               onClick={() => setOpenPDF("cookies")}
