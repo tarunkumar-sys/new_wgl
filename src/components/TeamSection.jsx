@@ -1,6 +1,3 @@
-// import ParticleBackground from "./ParticleBackground";
-
-// --- Data ---
 const teamData = [
   { name: "Pritiranjan Dash", title: "Founder & President", image: "https://www.worldgreenline.org/images/team1.jpg" },
   { name: "Vishal Kumar", title: "Vice President", image: "https://www.worldgreenline.org/images/team.jpg" },

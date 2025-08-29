@@ -1,4 +1,3 @@
-// BlogPost.js
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { ref, set, onValue } from "firebase/database";
@@ -183,16 +182,6 @@ export default function BlogPost() {
 
   return (
     <div className="min-h-screen bg-white relative">
-      {/* {showShareButton && (
-        <button
-          onClick={handleShare}
-          className="fixed right-6 bottom-6 bg-blue-600 text-white p-3 rounded-full shadow-lg z-50 hover:bg-blue-700 transition-colors flex items-center justify-center"
-          aria-label="Share this post"
-        >
-          <Share2 size={24} />
-        </button>
-      )} */}
-
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         <Link
           to="/blogs"

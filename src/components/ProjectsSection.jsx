@@ -206,11 +206,11 @@ const typeColors = {
 };
 
 // Status color mapping
-  const statusColors = {
-    Upcoming: "bg-gradient-to-r from-yellow-500 to-yellow-600",
-    Ongoing: "bg-gradient-to-r from-blue-500 to-blue-600",
-    Completed: "bg-gradient-to-r from-green-500 to-green-600",
-  };
+const statusColors = {
+  Upcoming: "bg-gradient-to-r from-yellow-500 to-yellow-600",
+  Ongoing: "bg-gradient-to-r from-blue-500 to-blue-600",
+  Completed: "bg-gradient-to-r from-green-500 to-green-600",
+};
 
 const AllProjectsPopup = ({ projects = [], onClose, onProjectClick }) => {
   useEffect(() => {
@@ -288,12 +288,7 @@ const AllProjectsPopup = ({ projects = [], onClose, onProjectClick }) => {
                       {project.description}
                     </p>
                     <div className="mt-4">
-                      <div className="flex justify-between items-center mb-1">
-                        {/* <span className="text-xs text-gray-400">Progress</span> */}
-                        {/* <span className="text-xs font-medium text-white">
-                          {project.progress}%
-                        </span> */}
-                      </div>
+                      <div className="flex justify-between items-center mb-1"></div>
                       <div className="w-full bg-gray-700 rounded-full h-1.5">
                         <div
                           className={`h-1.5 rounded-full ${
@@ -521,10 +516,7 @@ const ProjectsSection = () => {
                               </h3>
                             )}
                           </div>
-                          {/* <span className="inline-flex items-center px-2 py-0.5 rounded-xl text-xs font-medium bg-green-900 text-white h-fit">
-                            {project.status}
-                          </span> */}
-                          {/* Updated status badge with color coding */}
+
                           <span
                             className={`inline-flex items-center px-2 py-0.5 rounded-md text-xs font-medium text-white h-fit ${
                               statusColors[project.status] || "bg-gray-600"
@@ -540,12 +532,7 @@ const ProjectsSection = () => {
                       </div>
 
                       <div className="mt-4">
-                        <div className="flex justify-between items-center mb-1">
-                          {/* <span className="text-xs text-gray-400"> Progress </span> */}
-                          {/* <span className="text-xs font-medium text-white">
-                            {project.progress}%
-                          </span> */}
-                        </div>
+                        <div className="flex justify-between items-center mb-1"></div>
                         <div className="w-full bg-gray-700 rounded-full h-1.5">
                           <div
                             className={`h-1.5 rounded-full ${

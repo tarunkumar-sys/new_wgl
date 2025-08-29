@@ -234,13 +234,6 @@ const App = () => {
             )}
           </div>
         </div>
-
-        {/* <footer className="text-center mt-12 text-gray-500 text-sm">
-          <p>
-            A registered non-profit organization. Donations are tax-deductible
-            under Section 80G.
-          </p>
-        </footer> */}
       </div>
     </div>
   );
