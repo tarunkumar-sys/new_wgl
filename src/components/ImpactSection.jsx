@@ -165,8 +165,8 @@ export default function ImpactSection() {
             },
             {
               value: "30+",
-              label: "Villages restored",
-              desc: "by uplifting them from cycle of poverty",
+              label: "Villages Engaged",
+              desc: "in projects that bring people together towards progress",
             },
           ].map((item, idx) => (
             <ImpactCard

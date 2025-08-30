@@ -59,8 +59,8 @@ try {
   process.exit(1);
 }
 
-const CLOUDINARY_MEDIA_FOLDER = 'media_gallery';
-const UPLOAD_PRESET = process.env.VITE_CLOUDINARY_UPLOAD_PRESET || 'wgl_images';
+const CLOUDINARY_MEDIA_FOLDER = 'wgl';
+const UPLOAD_PRESET = process.env.VITE_CLOUDINARY_UPLOAD_PRESET || 'wgl_website';
 
 // Multer for documents
 const docStorage = multer.diskStorage({
